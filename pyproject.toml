@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sseg-rlvr"
+version = "0.0.1"
+description = "Structure-Verified RLVR for label-efficient pathology instance segmentation"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+vision = ["scipy", "scikit-image"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

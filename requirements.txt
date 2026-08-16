@@ -1,0 +1,3 @@
+# Minimal deps for literature scripts and package import path
+pyyaml>=6.0
+numpy>=1.24

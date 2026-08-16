@@ -1,0 +1,184 @@
+# GitHub Issues manifest for S-Seg-RLVR
+# Create tickets with: python3 scripts/create_github_issues.py
+# Requires GitHub CLI (`gh`) authenticated with issue write access.
+
+issues:
+  - title: "W1: Rewrite S-Seg-RLVR proposal in your own words (1 page)"
+    labels: [learning, docs]
+    body: |
+      **Week:** 1–2
+      **Goal:** Prove you understand the hypothesis before deep reading.
+
+      ## Acceptance
+      - [ ] 1-page Markdown note (e.g. `docs/roadmap/my_project_restatement.md`)
+      - [ ] Mentions: Dice failure mode, discrete structural rewards, GRPO, weak labels, go/no-go vs soft surrogates
+      - [ ] Reviewed or discussed with Alexander Chowdhury
+
+      Refs: `docs/proposal/PROPOSAL_DIGEST.md`
+
+  - title: "W1–2: HF Deep RL — Units 1 and 4 (skip Q-learning rabbit hole)"
+    labels: [learning]
+    body: |
+      **Week:** 1–2
+      Course: https://huggingface.co/learn/deep-rl-course
+
+      ## Do
+      - [ ] Unit 1 fundamentals
+      - [ ] Unit 4 policy gradients / REINFORCE
+
+      ## Skip
+      - Unit 2–3 deep dive, Unit 5, Unit 7
+
+      ## Acceptance
+      - [ ] Short note: what a policy gradient update is, in your own words
+
+  - title: "Literature: reading notes for PPO [1] and GRPO/DeepSeekMath [2]"
+    labels: [literature, learning]
+    body: |
+      ## Acceptance
+      - [ ] Fill `literature/notes/01_schulman2017ppo.md`
+      - [ ] Fill `literature/notes/02_shao2024deepseekmath.md`
+      - [ ] Each has: summary, method, relation to S-Seg-RLVR, questions for Alexander
+
+  - title: "Literature: Seg-Zero [5] and Seg-R1 [6] close read"
+    labels: [literature]
+    body: |
+      **Week:** 3–4
+      ## Acceptance
+      - [ ] Notes for papers 05 and 06 completed
+      - [ ] Explicit list of their reward terms
+      - [ ] One paragraph: why they are NOT structural pathology instance RLVR
+
+  - title: "Deliverable: related-work differentiation matrix v1"
+    labels: [literature, paper]
+    body: |
+      **Week:** 3–4
+      Create `docs/roadmap/related_work_matrix.md` with columns:
+      task | reward type | dense instance masks? | medical/pathology? | structural verifier? | notes
+
+      Rows should include at least: Seg-Zero, Seg-R1, LENS, MedGround-R1, MedSAM-Agent, HoVer-Net, clDice/PH losses, RLogist/PEAN, this work.
+
+      ## Acceptance
+      - [ ] Matrix file committed
+      - [ ] Mentor review requested
+
+  - title: "W5–6: HoVer-Net deep read + clustered-nuclei failure note"
+    labels: [literature, learning]
+    body: |
+      ## Acceptance
+      - [ ] `literature/notes/16_graham2019hovernet.md` filled
+      - [ ] One-page note/figure sketch: high Dice + wrong count / merge failure
+      - [ ] Link failure mode to R_sep / R_cnt
+
+  - title: "W5–6: SAM / SAM2 architecture notes (policy literacy)"
+    labels: [literature, learning]
+    body: |
+      ## Acceptance
+      - [ ] Notes for [14] and [15] explain image encoder + mask decoder at a high level
+      - [ ] One paragraph: what would be the \"policy\" if we fine-tune the mask decoder
+
+  - title: "W7–8: Topology surrogates — Hu, Clough, clDice notes"
+    labels: [literature]
+    body: |
+      ## Acceptance
+      - [ ] Notes 24, 25, 26 filled
+      - [ ] Half-page: why Betti/count need surrogates under SGD; why GRPO does not
+      - [ ] Resolve citation gaps [8]/[23] with Alexander if possible
+
+  - title: "Rewards: implement R_cnt + unit tests (synthetic)"
+    labels: [rewards]
+    body: |
+      **Week:** 9–11
+      Implement in `src/sseg_rlvr/rewards/`.
+
+      ## Acceptance
+      - [ ] Connected-component count vs point count reward
+      - [ ] Tests: perfect count, over-segment, under-segment, empty mask
+      - [ ] No GPU / no real dataset required
+
+  - title: "Rewards: implement R_sep + merge-penalty tests"
+    labels: [rewards]
+    body: |
+      ## Acceptance
+      - [ ] Penalize one component covering ≥2 point markers
+      - [ ] Reward 1:1 instance–point assignment cases
+      - [ ] Tests for touching blobs / diagonal connectivity documented
+
+  - title: "Rewards: implement R_fmt, R_match, R_topo stubs→real"
+    labels: [rewards]
+    body: |
+      ## Acceptance
+      - [ ] R_fmt rejects degenerate masks
+      - [ ] R_match Hungarian / PQ-like on toy instances
+      - [ ] R_topo β0/β1 on synthetic rings (gland-like)
+      - [ ] Package README documents equations
+
+  - title: "Data: choose + request first nuclei dataset with mentor"
+    labels: [data]
+    body: |
+      **Week:** 12–13
+      No datasets in repo yet.
+
+      ## Acceptance
+      - [ ] Decision: MoNuSeg vs PanNuke vs other
+      - [ ] Access/download instructions for Harvard RC documented
+      - [ ] Dataset card drafted (license, splits, citation)
+      - [ ] Raw data NOT committed to git
+
+  - title: "Data: point-annotation simulator from instance masks"
+    labels: [data, rewards]
+    body: |
+      ## Acceptance
+      - [ ] Script/module: instance mask → centroids + counts
+      - [ ] Documented assumptions (one point per instance, border cases)
+      - [ ] Works on synthetic data before real dataset arrives
+
+  - title: "Compute: Harvard RC GPU smoke test"
+    labels: [compute]
+    body: |
+      ## Acceptance
+      - [ ] Log in / allocate interactive or batch GPU job
+      - [ ] Run `nvidia-smi` + tiny PyTorch CUDA tensor test
+      - [ ] Record module/conda commands in `docs/guides/` or experiment card
+      - [ ] Note Dana-Farber path as future
+
+  - title: "Experiments: Rung 0 anchor-only supervised fine-tune plan"
+    labels: [experiments]
+    body: |
+      **Week:** 14–16 (with mentor)
+      ## Acceptance
+      - [ ] Experiment card written before run
+      - [ ] Success metrics defined
+      - [ ] Blocked dependencies listed (data, code, GPU)
+
+  - title: "Experiments: Rung 1 + R_cnt GRPO MVP"
+    labels: [experiments, rewards]
+    body: |
+      ## Acceptance
+      - [ ] Training recipe agreed with Alexander
+      - [ ] Run logged (config, seed, metrics)
+      - [ ] Compare qualitatively to Rung 0 on merge failures
+
+  - title: "Paper: outline + gap figure draft"
+    labels: [paper]
+    body: |
+      **Week:** 14–16
+      ## Acceptance
+      - [ ] Outline sections committed under `docs/` or `paper/`
+      - [ ] Gap figure sketch (Dice OK / structure wrong)
+      - [ ] Related-work section bullets from matrix
+
+  - title: "Meta: resolve unresolved bibliography entries with Alexander"
+    labels: [literature, docs]
+    body: |
+      From `literature/papers.yaml` status unresolved / doi_only follow-ups:
+      - SAM-R1 (2505.xxxx)
+      - Qu et al. point supervision
+      - Qaiser & Rajpoot exact cite
+      - PEAN DOI
+      - Confirm journal-only links for nnU-Net / Naylor / MoNuSeg
+
+      ## Acceptance
+      - [ ] `papers.yaml` updated
+      - [ ] Re-run `export_bib.py`
+      - [ ] Download any newly found arXiv PDFs
