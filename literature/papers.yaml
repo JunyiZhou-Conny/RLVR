@@ -1,0 +1,425 @@
+# Literature index for S-Seg-RLVR
+# Stages match mentor reading roadmap (0–6). priority: must | should | optional
+# status: available (arxiv pdf), doi_only, unresolved
+
+papers:
+  - id: 1
+    key: schulman2017ppo
+    title: "Proximal Policy Optimization Algorithms"
+    authors: "Schulman et al."
+    year: 2017
+    arxiv: "1707.06347"
+    stage: 0
+    priority: must
+    status: available
+    notes_file: notes/01_schulman2017ppo.md
+
+  - id: 2
+    key: shao2024deepseekmath
+    title: "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models (GRPO)"
+    authors: "Shao et al."
+    year: 2024
+    arxiv: "2402.03300"
+    stage: 0
+    priority: must
+    status: available
+    notes_file: notes/02_shao2024deepseekmath.md
+
+  - id: 3
+    key: guo2025deepseek_r1
+    title: "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning"
+    authors: "Guo et al."
+    year: 2025
+    arxiv: "2501.12948"
+    stage: 0
+    priority: must
+    status: available
+    notes_file: notes/03_guo2025deepseek_r1.md
+
+  - id: 4
+    key: yu2025dapo
+    title: "DAPO: An Open-Source LLM Reinforcement Learning System at Scale"
+    authors: "Yu et al."
+    year: 2025
+    arxiv: "2503.14476"
+    stage: 0
+    priority: should
+    status: available
+    notes_file: notes/04_yu2025dapo.md
+
+  - id: 5
+    key: liu2025segzero
+    title: "Seg-Zero: Reasoning-Chain Guided Segmentation via Cognitive Reinforcement"
+    authors: "Liu et al."
+    year: 2025
+    arxiv: "2503.06520"
+    stage: 1
+    priority: must
+    status: available
+    notes_file: notes/05_liu2025segzero.md
+
+  - id: 6
+    key: you2025segr1
+    title: "Seg-R1: Segmentation Can Be Surprisingly Simple with Reinforcement Learning"
+    authors: "You & Wu"
+    year: 2025
+    arxiv: "2506.22624"
+    stage: 1
+    priority: must
+    status: available
+    notes_file: notes/06_you2025segr1.md
+
+  - id: 7
+    key: lens2025
+    title: "LENS: Learning to Segment Anything with Unified Reinforced Reasoning"
+    authors: "LENS authors"
+    year: 2025
+    arxiv: "2508.14153"
+    stage: 1
+    priority: should
+    status: available
+    notes_file: notes/07_lens2025.md
+
+  - id: 8
+    key: sam_r1_2025
+    title: "SAM-R1"
+    authors: "TBD"
+    year: 2025
+    arxiv: null
+    note: "Proposal lists †2505.xxxx — resolve with mentor"
+    stage: 1
+    priority: optional
+    status: unresolved
+    notes_file: notes/08_sam_r1_2025.md
+
+  - id: 9
+    key: medground_r1_2025
+    title: "MedGround-R1: Advancing Medical Image Grounding via Spatial-Semantic Rewarded Group Relative Policy Optimization"
+    authors: "MedGround-R1 authors"
+    year: 2025
+    arxiv: "2507.02994"
+    stage: 1
+    priority: should
+    status: available
+    notes_file: notes/09_medground_r1_2025.md
+
+  - id: 10
+    key: medsam_agent_2026
+    title: "MedSAM-Agent: Multi-turn Agentic RL for Interactive Medical Segmentation"
+    authors: "MedSAM-Agent authors"
+    year: 2026
+    arxiv: "2602.03320"
+    stage: 1
+    priority: should
+    status: available
+    notes_file: notes/10_medsam_agent_2026.md
+
+  - id: 11
+    key: lai2025med_r1
+    title: "Med-R1: Reinforcement Learning for Generalizable Medical Reasoning in Vision-Language Models"
+    authors: "Lai et al."
+    year: 2025
+    arxiv: "2503.13939"
+    stage: 1
+    priority: should
+    status: available
+    notes_file: notes/11_lai2025med_r1.md
+
+  - id: 12
+    key: ronneberger2015unet
+    title: "U-Net: Convolutional Networks for Biomedical Image Segmentation"
+    authors: "Ronneberger et al."
+    year: 2015
+    arxiv: "1505.04597"
+    stage: 2
+    priority: should
+    status: available
+    notes_file: notes/12_ronneberger2015unet.md
+
+  - id: 13
+    key: isensee2021nnunet
+    title: "nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"
+    authors: "Isensee et al."
+    year: 2021
+    arxiv: null
+    doi: "10.1038/s41592-020-01008-z"
+    note: "Nature Methods — use DOI; open preprint may exist separately"
+    stage: 2
+    priority: should
+    status: doi_only
+    url: "https://doi.org/10.1038/s41592-020-01008-z"
+    notes_file: notes/13_isensee2021nnunet.md
+
+  - id: 14
+    key: kirillov2023sam
+    title: "Segment Anything"
+    authors: "Kirillov et al."
+    year: 2023
+    arxiv: "2304.02643"
+    stage: 2
+    priority: must
+    status: available
+    notes_file: notes/14_kirillov2023sam.md
+
+  - id: 15
+    key: ravi2024sam2
+    title: "SAM 2: Segment Anything in Images and Videos"
+    authors: "Ravi et al."
+    year: 2024
+    arxiv: "2408.00714"
+    stage: 2
+    priority: must
+    status: available
+    notes_file: notes/15_ravi2024sam2.md
+
+  - id: 16
+    key: graham2019hovernet
+    title: "HoVer-Net: Simultaneous Segmentation and Classification of Nuclei in Multi-Tissue Histology Images"
+    authors: "Graham et al."
+    year: 2019
+    arxiv: "1812.06499"
+    stage: 3
+    priority: must
+    status: available
+    notes_file: notes/16_graham2019hovernet.md
+
+  - id: 17
+    key: schmidt2018stardist
+    title: "Cell Detection with Star-Convex Polygons (StarDist)"
+    authors: "Schmidt et al."
+    year: 2018
+    arxiv: "1806.03535"
+    stage: 3
+    priority: should
+    status: available
+    notes_file: notes/17_schmidt2018stardist.md
+
+  - id: 18
+    key: stringer2021cellpose
+    title: "Cellpose: a generalist algorithm for cellular segmentation"
+    authors: "Stringer et al."
+    year: 2021
+    arxiv: "2006.14448"
+    note: "Nature Methods journal version may differ; arXiv preprint committed when available"
+    stage: 3
+    priority: should
+    status: available
+    notes_file: notes/18_stringer2021cellpose.md
+
+  - id: 19
+    key: naylor2019distance
+    title: "Segmentation of Nuclei by Deep Regression of the Distance Map"
+    authors: "Naylor et al."
+    year: 2019
+    arxiv: null
+    doi: "10.1109/TMI.2018.2865709"
+    stage: 3
+    priority: should
+    status: doi_only
+    url: "https://doi.org/10.1109/TMI.2018.2865709"
+    notes_file: notes/19_naylor2019distance.md
+
+  - id: 20
+    key: chen2016dcan
+    title: "DCAN: Deep Contour-Aware Networks for Accurate Gland Segmentation"
+    authors: "Chen et al."
+    year: 2016
+    arxiv: "1604.02678"
+    stage: 3
+    priority: should
+    status: available
+    notes_file: notes/20_chen2016dcan.md
+
+  - id: 21
+    key: kirillov2019panoptic
+    title: "Panoptic Segmentation"
+    authors: "Kirillov et al."
+    year: 2019
+    arxiv: "1801.00868"
+    stage: 3
+    priority: must
+    status: available
+    notes_file: notes/21_kirillov2019panoptic.md
+
+  - id: 22
+    key: lin2023scnet
+    title: "Nuclei Segmentation with Point Annotations from Pathology Images via Self-Supervised Learning and Co-Training"
+    authors: "Lin et al."
+    year: 2023
+    arxiv: "2202.08195"
+    stage: 4
+    priority: must
+    status: available
+    notes_file: notes/22_lin2023scnet.md
+
+  - id: 23
+    key: qu_weak_nuclei
+    title: "Weakly Supervised Nuclei Segmentation from Points"
+    authors: "Qu et al."
+    year: 2019
+    arxiv: null
+    note: "Proposal lists †2019/2020 — resolve exact citation with mentor (possible MICCAI/ISBI point-supervision papers)"
+    stage: 4
+    priority: should
+    status: unresolved
+    notes_file: notes/23_qu_weak_nuclei.md
+
+  - id: 24
+    key: hu2019topology
+    title: "Topology-Preserving Deep Image Segmentation"
+    authors: "Hu et al."
+    year: 2019
+    arxiv: "1906.02382"
+    stage: 5
+    priority: must
+    status: available
+    notes_file: notes/24_hu2019topology.md
+
+  - id: 25
+    key: clough2019topological
+    title: "A Topological Loss Function for Deep-Learning based Image Segmentation using Persistent Homology"
+    authors: "Clough et al."
+    year: 2019
+    arxiv: "1910.01877"
+    stage: 5
+    priority: must
+    status: available
+    notes_file: notes/25_clough2019topological.md
+
+  - id: 26
+    key: shit2021cldice
+    title: "clDice — A Novel Topology-Preserving Loss Function for Tubular Structure Segmentation"
+    authors: "Shit et al."
+    year: 2021
+    arxiv: "2003.07311"
+    stage: 5
+    priority: must
+    status: available
+    notes_file: notes/26_shit2021cldice.md
+
+  - id: 27
+    key: stucki2023barcodes
+    title: "Topologically Faithful Image Segmentation via Induced Matching of Persistence Barcodes"
+    authors: "Stucki et al."
+    year: 2023
+    arxiv: "2211.15272"
+    stage: 5
+    priority: should
+    status: available
+    notes_file: notes/27_stucki2023barcodes.md
+
+  - id: 28
+    key: berger2024topo
+    title: "Topologically Faithful Multi-Class Segmentation in Medical Images"
+    authors: "Berger et al."
+    year: 2024
+    arxiv: "2403.11001"
+    stage: 5
+    priority: should
+    status: available
+    notes_file: notes/28_berger2024topo.md
+
+  - id: 29
+    key: qaiser2019where
+    title: "Learning Where to See — RL patch selection across magnifications"
+    authors: "Qaiser & Rajpoot"
+    year: 2019
+    arxiv: null
+    note: "Positioning paper — resolve exact venue/DOI with mentor"
+    stage: 6
+    priority: optional
+    status: unresolved
+    notes_file: notes/29_qaiser2019where.md
+
+  - id: 30
+    key: zhao2022rlogist
+    title: "RLogist: Fast Observation Strategy on Whole-slide Images with Deep Reinforcement Learning"
+    authors: "Zhao et al."
+    year: 2022
+    arxiv: "2212.01737"
+    stage: 6
+    priority: optional
+    status: available
+    notes_file: notes/30_zhao2022rlogist.md
+
+  - id: 31
+    key: pean2025
+    title: "Deep Learning Quantifies Pathologists' Visual Patterns (PEAN)"
+    authors: "PEAN authors"
+    year: 2025
+    arxiv: null
+    doi: null
+    note: "Nature Communications 2025 — resolve DOI with mentor; positioning only"
+    stage: 6
+    priority: optional
+    status: unresolved
+    notes_file: notes/31_pean2025.md
+
+  - id: 32
+    key: actor_critic_instance_2021
+    title: "Stateless Actor-Critic for Instance Segmentation with High-Level Priors"
+    authors: "TBD"
+    year: 2021
+    arxiv: "2107.02600"
+    stage: 6
+    priority: should
+    status: available
+    notes_file: notes/32_actor_critic_instance_2021.md
+
+  - id: 33
+    key: kumar2017monuseg
+    title: "A Dataset and a Technique for Generalized Nuclear Segmentation for Computational Pathology (MoNuSeg)"
+    authors: "Kumar et al."
+    year: 2017
+    arxiv: null
+    doi: "10.1109/TMI.2017.2677499"
+    stage: 3
+    priority: should
+    status: doi_only
+    url: "https://doi.org/10.1109/TMI.2017.2677499"
+    notes_file: notes/33_kumar2017monuseg.md
+
+  - id: 34
+    key: gamper2019pannuke
+    title: "PanNuke Dataset Extension, Insights and Baselines"
+    authors: "Gamper et al."
+    year: 2020
+    arxiv: "2003.10778"
+    stage: 3
+    priority: should
+    status: available
+    notes_file: notes/34_gamper2019pannuke.md
+
+  - id: 35
+    key: sirinukunwattana2017glas
+    title: "Gland Segmentation in Colon Histology Images: The GlaS Challenge Contest"
+    authors: "Sirinukunwattana et al."
+    year: 2017
+    arxiv: "1603.00275"
+    stage: 3
+    priority: should
+    status: available
+    notes_file: notes/35_sirinukunwattana2017glas.md
+
+  - id: 36
+    key: graham2019mildnet_crag
+    title: "MILD-Net / CRAG — gland segmentation in colon histology"
+    authors: "Graham et al."
+    year: 2019
+    arxiv: "1803.00208"
+    note: "MILD-Net paper associated with CRAG dataset context"
+    stage: 3
+    priority: should
+    status: available
+    notes_file: notes/36_graham2019mildnet_crag.md
+
+  - id: 37
+    key: graham2021lizard
+    title: "Lizard: A Large-Scale Dataset for Colonic Nuclear Instance Segmentation and Classification"
+    authors: "Graham et al."
+    year: 2021
+    arxiv: "2108.11195"
+    stage: 3
+    priority: should
+    status: available
+    notes_file: notes/37_graham2021lizard.md

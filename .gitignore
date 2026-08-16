@@ -1,0 +1,39 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Experiment outputs (keep cards, ignore heavy artifacts)
+experiments/**/checkpoints/
+experiments/**/wandb/
+experiments/**/runs/
+*.ckpt
+*.pt
+*.pth
+
+# Datasets — never commit raw pathology data
+data/
+datasets/
+*.svs
+*.ndpi
+*.tiff
+*.tif
+
+# Secrets
+credentials.json
+*.pem
