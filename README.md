@@ -46,8 +46,11 @@ Issues are defined in [`docs/roadmap/issues_manifest.yaml`](docs/roadmap/issues_
 ```bash
 gh auth login
 python3 scripts/create_github_issues.py --dry-run
-python3 scripts/create_github_issues.py
+python3 scripts/create_github_issues.py              # creates issues; label names go in the body
+python3 scripts/create_github_issues.py --apply-labels  # optional, needs permission to create labels
 ```
+
+If an accidental `test` issue exists from bootstrap, close it in the GitHub UI (the bootstrap token may lack close permission).
 
 ## Compute
 

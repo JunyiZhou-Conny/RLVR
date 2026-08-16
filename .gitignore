@@ -26,9 +26,9 @@ experiments/**/runs/
 *.pt
 *.pth
 
-# Datasets — never commit raw pathology data
-data/
-datasets/
+# Datasets — never commit raw pathology data (repo-root only; not src/**/data)
+/data/
+/datasets/
 *.svs
 *.ndpi
 *.tiff

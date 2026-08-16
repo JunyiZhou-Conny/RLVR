@@ -68,14 +68,18 @@ def ensure_labels(labels: list[str]) -> None:
             run(["gh", "label", "create", lab, "--color", color])
 
 
-def create_issue(title: str, body: str, labels: list[str], dry_run: bool) -> None:
+def create_issue(title: str, body: str, labels: list[str], dry_run: bool, apply_labels: bool) -> None:
+    label_line = ", ".join(labels) if labels else "(none)"
+    if labels and "## Labels" not in body:
+        body = f"**Labels (manifest):** `{label_line}`\n\n{body}"
     if dry_run:
-        print(f"WOULD CREATE: {title} labels={labels}")
+        print(f"WOULD CREATE: {title} labels={labels} apply_labels={apply_labels}")
         return
-    ensure_labels(labels)
     cmd = ["gh", "issue", "create", "--title", title, "--body", body]
-    for lab in labels:
-        cmd.extend(["--label", lab])
+    if apply_labels:
+        ensure_labels(labels)
+        for lab in labels:
+            cmd.extend(["--label", lab])
     proc = run(cmd)
     if proc.returncode != 0:
         print(f"FAIL {title}: {proc.stderr}", file=sys.stderr)
@@ -88,6 +92,12 @@ def main() -> int:
     parser.add_argument("--manifest", type=Path, default=MANIFEST)
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--force-all", action="store_true", help="Create even if title exists")
+    parser.add_argument(
+        "--apply-labels",
+        action="store_true",
+        help="Create/apply GitHub labels (needs label write permission). "
+        "Default: embed label names in the issue body only.",
+    )
     args = parser.parse_args()
 
     data = yaml.safe_load(args.manifest.read_text())
@@ -108,7 +118,13 @@ def main() -> int:
             print(f"SKIP exists: {title}")
             skipped += 1
             continue
-        create_issue(title, issue.get("body", ""), issue.get("labels", []), args.dry_run)
+        create_issue(
+            title,
+            issue.get("body", ""),
+            issue.get("labels", []),
+            args.dry_run,
+            args.apply_labels,
+        )
         created += 1
 
     print(f"Done. created/planned={created} skipped={skipped}")
