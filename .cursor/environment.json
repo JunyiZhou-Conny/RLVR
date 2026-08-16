@@ -1,0 +1,4 @@
+{
+  "name": "S-Seg-RLVR",
+  "install": "bash .cursor/install.sh"
+}
