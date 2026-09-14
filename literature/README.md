@@ -40,10 +40,11 @@ python3 literature/scripts/download_arxiv.py --dry-run
 | 5 | Seg-Zero | must | yes |
 | 6 | Seg-R1 | must | yes |
 | 7 | LENS | should | yes |
-| 8 | SAM-R1 | optional | **unresolved** |
+| 8 | SAM-R1 | optional | yes |
 | 9 | MedGround-R1 | should | yes |
 | 10 | MedSAM-Agent | should | yes |
 | 11 | Med-R1 | should | yes |
+| 38 | MedReasoner (body-only name) | should | yes |
 
 **Differentiation line:** these mostly do grounding / interactive clicking with overlap rewards; none use non-differentiable **structural** verifiers for dense pathology instance masks.
 
@@ -52,7 +53,7 @@ python3 literature/scripts/download_arxiv.py --dry-run
 | # | Paper | Priority | PDF |
 |---|-------|----------|-----|
 | 12 | U-Net | should | yes |
-| 13 | nnU-Net | should | DOI only |
+| 13 | nnU-Net | should | yes (arXiv preprint of Nat Methods) |
 | 14 | SAM | must | yes |
 | 15 | SAM 2 | must | yes |
 
@@ -67,13 +68,14 @@ python3 literature/scripts/download_arxiv.py --dry-run
 | 20 | DCAN (glands) | should | yes |
 | 21 | Panoptic Quality | must | yes |
 | 33–37 | MoNuSeg, PanNuke, GlaS, CRAG/MILD-Net, Lizard | should | mixed |
+| 39 | CoNSeP dataset (body-only name) | should | yes (HoVer-Net [16] PDF) |
 
 ## Stage 4 — Weak / point supervision
 
 | # | Paper | Priority | PDF |
 |---|-------|----------|-----|
 | 22 | SC-Net | must | yes |
-| 23 | Qu et al. point nuclei | should | **unresolved** |
+| 23 | Qu et al. point nuclei | should | yes |
 
 ## Stage 5 — Topological & structural objectives
 
@@ -89,20 +91,24 @@ python3 literature/scripts/download_arxiv.py --dry-run
 
 | # | Paper | Priority | PDF |
 |---|-------|----------|-----|
-| 29 | Qaiser & Rajpoot | optional | **unresolved** |
+| 29 | Qaiser & Rajpoot | optional | yes |
 | 30 | RLogist | optional | yes |
-| 31 | PEAN | optional | **unresolved** |
+| 31 | PEAN | optional | yes (Nat Comms OA) |
 | 32 | Stateless actor-critic instance seg | should | yes |
 
 ---
 
-## Unresolved citations (ask Alexander)
+## Body-only extras (not numbered in the proposal)
 
-1. **SAM-R1** — proposal lists `†2505.xxxx`
-2. **Qu et al.** weakly supervised nuclei from points — `†2019/2020`
-3. **Qaiser & Rajpoot** learning where to see — exact venue/DOI
-4. **PEAN** Nature Communications 2025 — DOI
-5. Journal-only: nnU-Net, Naylor distance map, MoNuSeg (use DOI links)
+| # | Paper / dataset | Priority | PDF |
+|---|-----------------|----------|-----|
+| 38 | MedReasoner | should | yes |
+| 39 | CoNSeP dataset | should | yes (same PDF as HoVer-Net [16]; not duplicated) |
+
+## Remaining paywalled (no legal open preprint found)
+
+1. **Naylor** distance-map TMI 2019 — DOI only. HAL `hal-01984033` is a notice without a file.
+2. **MoNuSeg / Kumar** TMI 2017 — DOI only. No arXiv. The 2019 challenge writeup is a different paper (not substituted).
 
 ---
 
