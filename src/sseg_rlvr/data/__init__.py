@@ -1,7 +1,7 @@
 """Dataset helpers: point simulation from instance masks, loaders.
 
-No raw pathology data lives in this repo. Implement simulators on synthetic
-or externally downloaded data under a local `data/` directory (gitignored).
+No raw pathology data lives in this repo. Download the six public sets with
+`python scripts/download_pathology_datasets.py` into `data/pathology/` (gitignored).
 """
 
 from __future__ import annotations
