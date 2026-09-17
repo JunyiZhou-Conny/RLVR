@@ -289,6 +289,47 @@ class _HrefParser(HTMLParser):
             self.hrefs.append(href)
 
 
+class _DriveFormParser(HTMLParser):
+    """Parse the Drive 'virus scan warning' download-anyway form."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.action: str | None = None
+        self.inputs: dict[str, str] = {}
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        ad = {k: (v or "") for k, v in attrs}
+        if tag == "form" and ad.get("action"):
+            self.action = ad["action"]
+        if tag == "input":
+            name = ad.get("name")
+            if name:
+                self.inputs[name] = ad.get("value", "")
+
+
+_DISPLAY_SIZE_RE = re.compile(r"\((\d+(?:\.\d+)?)\s*([BKMGT])(?:B|iB)?\)", re.I)
+_SIZE_MULT = {"B": 1, "K": 1024, "M": 1024**2, "G": 1024**3, "T": 1024**4}
+
+
+def parse_display_size(html: str) -> int | None:
+    match = _DISPLAY_SIZE_RE.search(html)
+    if not match:
+        return None
+    return int(float(match.group(1)) * _SIZE_MULT[match.group(2).upper()])
+
+
+def drive_confirm_url(html: str, page_url: str) -> str | None:
+    parser = _DriveFormParser()
+    parser.feed(html)
+    if parser.action and parser.inputs.get("id"):
+        return urllib.parse.urljoin(page_url, parser.action) + "?" + urllib.parse.urlencode(parser.inputs)
+    token = parse_drive_confirm(html)
+    file_id = drive_id(page_url)
+    if token and file_id:
+        return f"https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm={token}"
+    return None
+
+
 def archive_links_from_html(page_url: str, html: str) -> list[str]:
     parser = _HrefParser()
     parser.feed(html)
@@ -392,6 +433,7 @@ def open_data_response(
     spec: DatasetSpec,
     opener: urllib.request.OpenerDirector,
     extra: dict[str, str] | None = None,
+    max_bytes: int = 0,
 ):
     fetch_url = url.split("#", 1)[0]
     if is_drive_url(fetch_url) and drive_id(fetch_url):
@@ -405,17 +447,22 @@ def open_data_response(
     preview = resp.read(65536)
     remainder = resp.read()
     html = (preview + remainder).decode("utf-8", errors="ignore")
+    page_url = resp.geturl()
     resp.close()
     if is_drive_url(url) and drive_id(url):
-        token = parse_drive_confirm(html, opener_cookiejar(opener))
-        if token:
-            retry = (
-                f"https://drive.google.com/uc?export=download&id={drive_id(url)}"
-                f"&confirm={token}"
-            )
+        shown = parse_display_size(html)
+        _reject_if_too_large(shown, 0, max_bytes)
+        retry = drive_confirm_url(html, page_url)
+        if not retry:
+            token = parse_drive_confirm(html, opener_cookiejar(opener))
+            if token:
+                retry = (
+                    "https://drive.usercontent.google.com/download"
+                    f"?id={drive_id(url)}&export=download&confirm={token}"
+                )
+        if retry:
             return opener.open(request(retry, spec, extra), timeout=TIMEOUT)
-    final_url = getattr(resp, "geturl", lambda: fetch_url)()
-    if looks_like_html(preview) or looks_like_login(final_url, preview):
+    if looks_like_html(preview) or looks_like_login(page_url, preview):
         raise RuntimeError(
             "received an HTML login / interstitial page instead of a data file"
         )
@@ -474,7 +521,7 @@ def download_url(
         extra["Range"] = f"bytes={part.stat().st_size}-"
         # Range resume is best-effort; if the server ignores it we restart.
         try:
-            resp = open_data_response(url, spec, opener, extra)
+            resp = open_data_response(url, spec, opener, extra, max_bytes=max_bytes)
             if resp.status == 206:
                 with part.open("ab") as handle, resp:
                     while True:
@@ -492,7 +539,7 @@ def download_url(
         except (urllib.error.HTTPError, urllib.error.URLError, RuntimeError):
             extra.pop("Range", None)
         part.unlink(missing_ok=True)
-    with open_data_response(url, spec, opener, extra or None) as resp:
+    with open_data_response(url, spec, opener, extra or None, max_bytes=max_bytes) as resp:
         return stream_to_dest(resp, dest, max_bytes=max_bytes)
 
 
