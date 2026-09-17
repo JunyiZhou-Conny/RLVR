@@ -63,7 +63,15 @@ Early milestones (reading, related-work matrix, reward unit tests on synthetic m
 
 ## Data
 
-No pathology datasets are in this repository yet. When access is arranged, keep raw data outside git (see `.gitignore`) and document download steps in a dataset card.
+Raw pathology images are **not** in git. Download the six public sets (PanNuke, CoNSeP, MoNuSeg, Lizard, GlaS, CRAG) with:
+
+```bash
+python scripts/download_pathology_datasets.py --dry-run
+python scripts/download_pathology_datasets.py --only pannuke,monuseg
+python scripts/download_pathology_datasets.py              # all it can; Warwick sets skip without creds
+```
+
+Default root: `data/pathology/` (gitignored). PanNuke and MoNuSeg are **CC BY-NC-SA 4.0**. Warwick-gated pages need `WARWICK_USER` / `WARWICK_PASS` or the printed manual steps. See [`scripts/README.md`](scripts/README.md).
 
 ## Hugging Face RL course (short version)
 
