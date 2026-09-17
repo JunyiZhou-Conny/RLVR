@@ -296,15 +296,25 @@ class _DriveFormParser(HTMLParser):
         super().__init__()
         self.action: str | None = None
         self.inputs: dict[str, str] = {}
+        self._cur_action: str | None = None
+        self._cur_inputs: dict[str, str] = {}
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         ad = {k: (v or "") for k, v in attrs}
-        if tag == "form" and ad.get("action"):
-            self.action = ad["action"]
-        if tag == "input":
-            name = ad.get("name")
-            if name:
-                self.inputs[name] = ad.get("value", "")
+        if tag == "form":
+            self._cur_action = ad.get("action") or None
+            self._cur_inputs = {}
+            return
+        if tag != "input" or self._cur_action is None:
+            return
+        name = ad.get("name")
+        if not name:
+            return
+        self._cur_inputs[name] = ad.get("value", "")
+        # Keep the first download form; later search boxes must not overwrite it.
+        if self.action is None and self._cur_inputs.get("id"):
+            self.action = self._cur_action
+            self.inputs = self._cur_inputs
 
 
 _DISPLAY_SIZE_RE = re.compile(r"\((\d+(?:\.\d+)?)\s*([BKMGT])(?:B|iB)?\)", re.I)
@@ -322,7 +332,11 @@ def drive_confirm_url(html: str, page_url: str) -> str | None:
     parser = _DriveFormParser()
     parser.feed(html)
     if parser.action and parser.inputs.get("id"):
-        return urllib.parse.urljoin(page_url, parser.action) + "?" + urllib.parse.urlencode(parser.inputs)
+        joined = urllib.parse.urljoin(page_url, parser.action)
+        parsed = urllib.parse.urlparse(joined)
+        query = dict(urllib.parse.parse_qsl(parsed.query, keep_blank_values=True))
+        query.update(parser.inputs)
+        return urllib.parse.urlunparse(parsed._replace(query=urllib.parse.urlencode(query)))
     token = parse_drive_confirm(html)
     file_id = drive_id(page_url)
     if token and file_id:
