@@ -82,14 +82,14 @@ papers:
 
   - id: 8
     key: sam_r1_2025
-    title: "SAM-R1"
-    authors: "TBD"
+    title: "SAM-R1: Leveraging SAM for Reward Feedback in Multimodal Segmentation via Reinforcement Learning"
+    authors: "Huang et al."
     year: 2025
-    arxiv: null
-    note: "Proposal lists †2505.xxxx — resolve with mentor"
+    arxiv: "2505.22596"
+    note: "Resolved from proposal †2505.xxxx — Huang, Xu, Zhou et al., Tsinghua"
     stage: 1
     priority: optional
-    status: unresolved
+    status: available
     notes_file: notes/08_sam_r1_2025.md
 
   - id: 9
@@ -141,12 +141,12 @@ papers:
     title: "nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation"
     authors: "Isensee et al."
     year: 2021
-    arxiv: null
+    arxiv: "1904.08128"
     doi: "10.1038/s41592-020-01008-z"
-    note: "Nature Methods — use DOI; open preprint may exist separately"
+    note: "Legal arXiv preprint of Nature Methods 2021; preprint title is 'Automated Design of Deep Learning Methods for Biomedical Image Segmentation'. Journal DOI retained. Earlier related preprint 1809.10486 is the 2018 self-adapting-framework note, not this journal paper."
     stage: 2
     priority: should
-    status: doi_only
+    status: available
     url: "https://doi.org/10.1038/s41592-020-01008-z"
     notes_file: notes/13_isensee2021nnunet.md
 
@@ -213,6 +213,7 @@ papers:
     year: 2019
     arxiv: null
     doi: "10.1109/TMI.2018.2865709"
+    note: "IEEE TMI paywall. HAL record hal-01984033 is a bibliographic notice only (no attached PDF; openAccess=false). No arXiv found."
     stage: 3
     priority: should
     status: doi_only
@@ -254,14 +255,16 @@ papers:
 
   - id: 23
     key: qu_weak_nuclei
-    title: "Weakly Supervised Nuclei Segmentation from Points"
+    title: "Weakly Supervised Deep Nuclei Segmentation Using Partial Points Annotation in Histopathology Images"
     authors: "Qu et al."
-    year: 2019
-    arxiv: null
-    note: "Proposal lists †2019/2020 — resolve exact citation with mentor (possible MICCAI/ISBI point-supervision papers)"
+    year: 2020
+    arxiv: "2007.05448"
+    doi: "10.1109/TMI.2020.3002244"
+    note: "Resolved from proposal †2019/2020: TMI 2020 journal version (arXiv:2007.05448). Conference version is MIDL 2019, PMLR 102:390–400, open PDF https://proceedings.mlr.press/v102/qu19a/qu19a.pdf (same first author / point-annotation method)."
     stage: 4
     priority: should
-    status: unresolved
+    status: available
+    url: "https://arxiv.org/abs/2007.05448"
     notes_file: notes/23_qu_weak_nuclei.md
 
   - id: 24
@@ -321,14 +324,16 @@ papers:
 
   - id: 29
     key: qaiser2019where
-    title: "Learning Where to See — RL patch selection across magnifications"
+    title: "Learning Where to See: A Novel Attention Model for Automated Immunohistochemical Scoring"
     authors: "Qaiser & Rajpoot"
     year: 2019
-    arxiv: null
-    note: "Positioning paper — resolve exact venue/DOI with mentor"
+    arxiv: "1903.10762"
+    doi: "10.1109/TMI.2019.2907049"
+    note: "IEEE TMI 38(11):2620–2631. Author accepted manuscript also at Warwick WRAP (http://wrap.warwick.ac.uk/115236/). RL patch selection across magnifications for IHC scoring."
     stage: 6
     priority: optional
-    status: unresolved
+    status: available
+    url: "https://arxiv.org/abs/1903.10762"
     notes_file: notes/29_qaiser2019where.md
 
   - id: 30
@@ -344,15 +349,16 @@ papers:
 
   - id: 31
     key: pean2025
-    title: "Deep Learning Quantifies Pathologists' Visual Patterns (PEAN)"
-    authors: "PEAN authors"
+    title: "Deep learning quantifies pathologists' visual patterns for whole slide image diagnosis (PEAN)"
+    authors: "Nan et al."
     year: 2025
     arxiv: null
-    doi: null
-    note: "Nature Communications 2025 — resolve DOI with mentor; positioning only"
+    doi: "10.1038/s41467-025-60307-1"
+    note: "Nature Communications 16:5493 (2025), Pathology Expertise Acquisition Network. Gold OA (CC BY-NC-ND). PDF from publisher; also PMC12214614. No arXiv."
     stage: 6
     priority: optional
-    status: unresolved
+    status: available
+    url: "https://doi.org/10.1038/s41467-025-60307-1"
     notes_file: notes/31_pean2025.md
 
   - id: 32
@@ -373,6 +379,7 @@ papers:
     year: 2017
     arxiv: null
     doi: "10.1109/TMI.2017.2677499"
+    note: "IEEE TMI 2017 paywall. No arXiv or author preprint found for this dataset paper. The 2019 MoNuSeg challenge writeup (TMI; PMC10439521) is a different paper and was not used as a substitute."
     stage: 3
     priority: should
     status: doi_only
@@ -423,3 +430,29 @@ papers:
     priority: should
     status: available
     notes_file: notes/37_graham2021lizard.md
+
+  - id: 38
+    key: yan2025medreasoner
+    title: "MedReasoner: Reinforcement Learning Drives Reasoning Grounding from Clinical Thought to Pixel-Level Precision"
+    authors: "Yan et al."
+    year: 2025
+    arxiv: "2508.08177"
+    note: "Named in proposal body with MedGround-R1 / MedSAM-Agent; not a numbered ref. AAAI 2026."
+    stage: 1
+    priority: should
+    status: available
+    notes_file: notes/38_yan2025medreasoner.md
+
+  - id: 39
+    key: graham2019consep
+    title: "CoNSeP — Colorectal Nuclear Segmentation and Phenotypes dataset"
+    authors: "Graham et al."
+    year: 2019
+    arxiv: null
+    doi: "10.1016/j.media.2019.101563"
+    note: "Dataset named in proposal body, not a numbered ref. No standalone dataset paper — introduced in HoVer-Net [16] (arXiv:1812.06499). PDF already at literature/pdfs/16_graham2019hovernet_1812.06499.pdf; not duplicated. Dataset page: https://warwick.ac.uk/fac/cross_fac/tia/data/hovernet/"
+    stage: 3
+    priority: should
+    status: available
+    url: "https://arxiv.org/abs/1812.06499"
+    notes_file: notes/39_graham2019consep.md
